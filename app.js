@@ -28,11 +28,9 @@ function flipCard() {
 function checkForMatch() {
 	//checking whether second card matches or not
 	if (firstCard.dataset.name === secondCard.dataset.name) {
-		// if it is matched -> removing event Listener
 
-		firstCard.removeEventListener('click', flipCard);
-
-		secondCard.removeEventListener('click', flipCard);
+		disabled();
+	
 	} else {
 		// if not matches -> removing flip
 
@@ -43,3 +41,11 @@ function checkForMatch() {
 	}
 }
 
+
+function disabled() {
+	// if it is matched -> removing event Listener
+
+	firstCard.removeEventListener('click', flipCard);
+
+	secondCard.removeEventListener('click', flipCard);
+}
