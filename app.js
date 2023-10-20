@@ -8,7 +8,7 @@ cards.forEach(function (card) {
 });
 
 function flipCard() {
-	this.classList.toggle('flip');
+	this.classList.add('flip');
 
 	if (!cardIsFlipped) {
 		// first click -> first card
@@ -23,29 +23,26 @@ function flipCard() {
 	}
 }
 
-
-
 function checkForMatch() {
 	//checking whether second card matches or not
-	if (firstCard.dataset.name === secondCard.dataset.name) {
 
-		disabled();
-	
-	} else {
-		// if not matches -> removing flip
+	let isMatched = firstCard.dataset.name === secondCard.dataset.name;
 
-		setTimeout(() => {
-			firstCard.classList.remove('flip');
-			secondCard.classList.remove('flip');
-		}, 1500);
-	}
+	isMatched ? disableCards() : unFlippedCards();
 }
 
-
-function disabled() {
+function disableCards() {
 	// if it is matched -> removing event Listener
 
 	firstCard.removeEventListener('click', flipCard);
 
 	secondCard.removeEventListener('click', flipCard);
+}
+
+function unFlippedCards() {
+	// if not matches -> removing flip
+	setTimeout(() => {
+		firstCard.classList.remove('flip');
+		secondCard.classList.remove('flip');
+	}, 1500);
 }
