@@ -10,6 +10,7 @@ cards.forEach(function (card) {
 
 function flipCard() {
 	if (lockBoard) return; //if card matches locked board
+	if (this === firstCard) return;
 
 	this.classList.add('flip');
 
@@ -37,6 +38,7 @@ function disableCards() {
 	// if it is matched -> removing event Listener
 	firstCard.removeEventListener('click', flipCard);
 	secondCard.removeEventListener('click', flipCard);
+	resetBoard();
 }
 
 function unFlippedCards() {
@@ -47,6 +49,11 @@ function unFlippedCards() {
 		firstCard.classList.remove('flip');
 		secondCard.classList.remove('flip');
 
-		lockBoard = false;
+		resetBoard();
 	}, 1500);
+}
+
+function resetBoard() {
+	[cardIsFlipped, lockBoard] = [false, false];
+	[firstCard, secondCard] = [null, null];
 }
