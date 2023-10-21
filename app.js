@@ -53,7 +53,17 @@ function unFlippedCards() {
 	}, 1500);
 }
 
+// reseting card board
 function resetBoard() {
 	[cardIsFlipped, lockBoard] = [false, false];
 	[firstCard, secondCard] = [null, null];
 }
+
+// suffling
+//IIFE -> Immediatley invoked function expression -> function is called imediately after its definition.
+(function shuffle() {
+	cards.forEach(function (card) {
+		let randomPositions = Math.floor(Math.random() * 12);
+		card.style.order = randomPositions;
+	});
+})();
